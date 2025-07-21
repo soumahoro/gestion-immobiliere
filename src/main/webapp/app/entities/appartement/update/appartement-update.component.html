@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-appartement-heading"
+        data-cy="AppartementCreateUpdateHeading"
+        jhiTranslate="gestionimmobiliereApp.appartement.home.createOrEditLabel"
+      >
+        Créer ou éditer un Appartement
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.appartement.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idappRef = editForm.get('idapp')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idapp" jhiTranslate="gestionimmobiliereApp.appartement.idapp">Idapp</label>
+          <input type="text" class="form-control" name="idapp" id="field_idapp" data-cy="idapp" formControlName="idapp" />
+          @if (idappRef.invalid && (idappRef.dirty || idappRef.touched)) {
+            <div>
+              @if (editForm.get('idapp')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_libelle" jhiTranslate="gestionimmobiliereApp.appartement.libelle">Libelle</label>
+          <input type="text" class="form-control" name="libelle" id="field_libelle" data-cy="libelle" formControlName="libelle" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_loyer" jhiTranslate="gestionimmobiliereApp.appartement.loyer">Loyer</label>
+          <input type="number" class="form-control" name="loyer" id="field_loyer" data-cy="loyer" formControlName="loyer" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nbrepieces" jhiTranslate="gestionimmobiliereApp.appartement.nbrepieces">Nbrepieces</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nbrepieces"
+            id="field_nbrepieces"
+            data-cy="nbrepieces"
+            formControlName="nbrepieces"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_taux" jhiTranslate="gestionimmobiliereApp.appartement.taux">Taux</label>
+          <input type="number" class="form-control" name="taux" id="field_taux" data-cy="taux" formControlName="taux" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_residence" jhiTranslate="gestionimmobiliereApp.appartement.residence">Residence</label>
+          <select
+            class="form-control"
+            id="field_residence"
+            data-cy="residence"
+            name="residence"
+            formControlName="residence"
+            [compareWith]="compareResidence"
+          >
+            <option [ngValue]="null"></option>
+            @for (residenceOption of residencesSharedCollection; track $index) {
+              <option [ngValue]="residenceOption">{{ residenceOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

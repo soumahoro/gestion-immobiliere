@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000129"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idreg",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "annee",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "montant",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "montantlettres",
+      "fieldType": "TextBlob"
+    },
+    {
+      "fieldName": "motif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observ1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observ2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observ3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "reste",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Reglement",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "locataire",
+      "relationshipName": "locataire",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "moi",
+      "relationshipName": "moi",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "utilisateur",
+      "relationshipName": "utilisateur",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (utilisateur(); as utilisateurRef) {
+      <div>
+        <h2 data-cy="utilisateurDetailsHeading"><span jhiTranslate="gestionimmobiliereApp.utilisateur.detail.title">Utilisateur</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.iduser">Iduser</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.iduser }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.login">Login</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.login }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.nom">Nom</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.prenom">Prenom</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.prenom }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.dateDeNaissance">Date De Naissance</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.dateDeNaissance | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.motdepasse">Motdepasse</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.motdepasse }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.email">Email</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.photo">Photo</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.photo }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.pwd">Pwd</span></dt>
+          <dd>
+            <span>{{ utilisateurRef.pwd }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.utilisateur.role">Role</span></dt>
+          <dd>
+            <span [jhiTranslate]="'gestionimmobiliereApp.Role.' + (utilisateurRef.role ?? 'null')">{{
+              { null: '', ADMIN: 'ADMIN', USER: 'USER' }[utilisateurRef.role ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/utilisateur', utilisateurRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

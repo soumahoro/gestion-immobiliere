@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000130"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idres",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ilot",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "localisation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quartier",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ville",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Residence",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "proprietaire",
+      "relationshipName": "proprietaire",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

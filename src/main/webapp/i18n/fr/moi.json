@@ -1,0 +1,25 @@
+{
+  "gestionimmobiliereApp": {
+    "moi": {
+      "home": {
+        "title": "Mois",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Moi",
+        "createOrEditLabel": "Créer ou éditer un Moi",
+        "notFound": "Aucun Moi trouvé"
+      },
+      "created": "Un nouveau Moi a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Moi avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Moi avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Moi {{ id }} ?"
+      },
+      "detail": {
+        "title": "Moi"
+      },
+      "id": "ID",
+      "idmois": "Idmois",
+      "mois": "Mois"
+    }
+  }
+}

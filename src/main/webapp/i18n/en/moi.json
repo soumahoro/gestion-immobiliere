@@ -1,0 +1,25 @@
+{
+  "gestionimmobiliereApp": {
+    "moi": {
+      "home": {
+        "title": "Mois",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Moi",
+        "createOrEditLabel": "Create or edit a Moi",
+        "notFound": "No Mois found"
+      },
+      "created": "A new Moi is created with identifier {{ param }}",
+      "updated": "A Moi is updated with identifier {{ param }}",
+      "deleted": "A Moi is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Moi {{ id }}?"
+      },
+      "detail": {
+        "title": "Moi"
+      },
+      "id": "ID",
+      "idmois": "Idmois",
+      "mois": "Mois"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000125"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idapp",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loyer",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nbrepieces",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taux",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Appartement",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "residence",
+      "relationshipName": "residence",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

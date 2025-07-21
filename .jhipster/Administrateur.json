@@ -1,0 +1,17 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000123"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Administrateur",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

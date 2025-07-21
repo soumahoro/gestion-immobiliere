@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000128"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idpro",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "residence",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tel",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Proprietaire",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

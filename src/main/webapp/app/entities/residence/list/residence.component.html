@@ -1,0 +1,156 @@
+<div>
+  <h2 id="page-heading" data-cy="ResidenceHeading">
+    <span jhiTranslate="gestionimmobiliereApp.residence.home.title">Residences</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.residence.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-residence"
+        [routerLink]="['/residence/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.residence.home.createLabel">Créer un nouveau Residence</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (residences().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionimmobiliereApp.residence.home.notFound">Aucun Residence trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idres">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.idres">Idres</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ilot">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.ilot">Ilot</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="localisation">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.localisation">Localisation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observation">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.observation">Observation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="quartier">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.quartier">Quartier</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ville">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.ville">Ville</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="proprietaire.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.residence.proprietaire">Proprietaire</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (residence of residences(); track trackId(residence)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/residence', residence.id, 'view']">{{ residence.id }}</a>
+              </td>
+              <td>{{ residence.idres }}</td>
+              <td>{{ residence.ilot }}</td>
+              <td>{{ residence.localisation }}</td>
+              <td>{{ residence.observation }}</td>
+              <td>{{ residence.quartier }}</td>
+              <td>{{ residence.ville }}</td>
+              <td>
+                @if (residence.proprietaire) {
+                  <div>
+                    <a [routerLink]="['/proprietaire', residence.proprietaire.id, 'view']">{{ residence.proprietaire.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/residence', residence.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/residence', residence.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(residence)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (residences().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

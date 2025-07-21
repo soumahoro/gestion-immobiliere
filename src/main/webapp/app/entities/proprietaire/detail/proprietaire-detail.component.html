@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (proprietaire(); as proprietaireRef) {
+      <div>
+        <h2 data-cy="proprietaireDetailsHeading">
+          <span jhiTranslate="gestionimmobiliereApp.proprietaire.detail.title">Proprietaire</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.proprietaire.idpro">Idpro</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.idpro }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.proprietaire.date">Date</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.date | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.proprietaire.nom">Nom</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.proprietaire.residence">Residence</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.residence }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.proprietaire.tel">Tel</span></dt>
+          <dd>
+            <span>{{ proprietaireRef.tel }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/proprietaire', proprietaireRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (moi(); as moiRef) {
+      <div>
+        <h2 data-cy="moiDetailsHeading"><span jhiTranslate="gestionimmobiliereApp.moi.detail.title">Moi</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ moiRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.moi.idmois">Idmois</span></dt>
+          <dd>
+            <span>{{ moiRef.idmois }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.moi.mois">Mois</span></dt>
+          <dd>
+            <span>{{ moiRef.mois }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/moi', moiRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

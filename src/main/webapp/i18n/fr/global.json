@@ -8,7 +8,15 @@
       "entities": {
         "main": "Entités",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "administrateur": "Administrateur",
+        "annee": "Annee",
+        "appartement": "Appartement",
+        "locataire": "Locataire",
+        "moi": "Moi",
+        "proprietaire": "Proprietaire",
+        "reglement": "Reglement",
+        "residence": "Residence",
+        "utilisateur": "Utilisateur"
       },
       "account": {
         "main": "Compte",

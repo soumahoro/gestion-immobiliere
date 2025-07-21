@@ -1,0 +1,152 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-reglement-heading"
+        data-cy="ReglementCreateUpdateHeading"
+        jhiTranslate="gestionimmobiliereApp.reglement.home.createOrEditLabel"
+      >
+        Créer ou éditer un Reglement
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.reglement.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_idreg" jhiTranslate="gestionimmobiliereApp.reglement.idreg">Idreg</label>
+          <input type="number" class="form-control" name="idreg" id="field_idreg" data-cy="idreg" formControlName="idreg" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_annee" jhiTranslate="gestionimmobiliereApp.reglement.annee">Annee</label>
+          <input type="number" class="form-control" name="annee" id="field_annee" data-cy="annee" formControlName="annee" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="gestionimmobiliereApp.reglement.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_montant" jhiTranslate="gestionimmobiliereApp.reglement.montant">Montant</label>
+          <input type="number" class="form-control" name="montant" id="field_montant" data-cy="montant" formControlName="montant" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_montantlettres" jhiTranslate="gestionimmobiliereApp.reglement.montantlettres"
+            >Montantlettres</label
+          >
+          <textarea
+            class="form-control"
+            name="montantlettres"
+            id="field_montantlettres"
+            data-cy="montantlettres"
+            formControlName="montantlettres"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motif" jhiTranslate="gestionimmobiliereApp.reglement.motif">Motif</label>
+          <input type="text" class="form-control" name="motif" id="field_motif" data-cy="motif" formControlName="motif" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observ1" jhiTranslate="gestionimmobiliereApp.reglement.observ1">Observ 1</label>
+          <input type="text" class="form-control" name="observ1" id="field_observ1" data-cy="observ1" formControlName="observ1" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observ2" jhiTranslate="gestionimmobiliereApp.reglement.observ2">Observ 2</label>
+          <input type="text" class="form-control" name="observ2" id="field_observ2" data-cy="observ2" formControlName="observ2" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observ3" jhiTranslate="gestionimmobiliereApp.reglement.observ3">Observ 3</label>
+          <input type="text" class="form-control" name="observ3" id="field_observ3" data-cy="observ3" formControlName="observ3" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_reste" jhiTranslate="gestionimmobiliereApp.reglement.reste">Reste</label>
+          <input type="number" class="form-control" name="reste" id="field_reste" data-cy="reste" formControlName="reste" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_locataire" jhiTranslate="gestionimmobiliereApp.reglement.locataire">Locataire</label>
+          <select
+            class="form-control"
+            id="field_locataire"
+            data-cy="locataire"
+            name="locataire"
+            formControlName="locataire"
+            [compareWith]="compareLocataire"
+          >
+            <option [ngValue]="null"></option>
+            @for (locataireOption of locatairesSharedCollection; track $index) {
+              <option [ngValue]="locataireOption">{{ locataireOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_moi" jhiTranslate="gestionimmobiliereApp.reglement.moi">Moi</label>
+          <select class="form-control" id="field_moi" data-cy="moi" name="moi" formControlName="moi" [compareWith]="compareMoi">
+            <option [ngValue]="null"></option>
+            @for (moiOption of moisSharedCollection; track $index) {
+              <option [ngValue]="moiOption">{{ moiOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_utilisateur" jhiTranslate="gestionimmobiliereApp.reglement.utilisateur">Utilisateur</label>
+          <select
+            class="form-control"
+            id="field_utilisateur"
+            data-cy="utilisateur"
+            name="utilisateur"
+            formControlName="utilisateur"
+            [compareWith]="compareUtilisateur"
+          >
+            <option [ngValue]="null"></option>
+            @for (utilisateurOption of utilisateursSharedCollection; track $index) {
+              <option [ngValue]="utilisateurOption">{{ utilisateurOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
