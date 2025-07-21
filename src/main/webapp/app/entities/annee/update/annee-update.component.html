@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-annee-heading" data-cy="AnneeCreateUpdateHeading" jhiTranslate="gestionimmobiliereApp.annee.home.createOrEditLabel">
+        Créer ou éditer un Annee
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.annee.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let anRef = editForm.get('an')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_an" jhiTranslate="gestionimmobiliereApp.annee.an">An</label>
+          <input type="number" class="form-control" name="an" id="field_an" data-cy="an" formControlName="an" />
+          @if (anRef.invalid && (anRef.dirty || anRef.touched)) {
+            <div>
+              @if (editForm.get('an')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+              <small class="form-text text-danger" [hidden]="!editForm.get('an')?.errors?.number" jhiTranslate="entity.validation.number"
+                >Ce champ doit être un nombre.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_libelle" jhiTranslate="gestionimmobiliereApp.annee.libelle">Libelle</label>
+          <input type="text" class="form-control" name="libelle" id="field_libelle" data-cy="libelle" formControlName="libelle" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

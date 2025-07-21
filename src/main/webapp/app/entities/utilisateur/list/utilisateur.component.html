@@ -1,0 +1,177 @@
+<div>
+  <h2 id="page-heading" data-cy="UtilisateurHeading">
+    <span jhiTranslate="gestionimmobiliereApp.utilisateur.home.title">Utilisateurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.utilisateur.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-utilisateur"
+        [routerLink]="['/utilisateur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.utilisateur.home.createLabel">Créer un nouveau Utilisateur</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (utilisateurs().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionimmobiliereApp.utilisateur.home.notFound">Aucun Utilisateur trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="iduser">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.iduser">Iduser</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="login">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.login">Login</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nom">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.nom">Nom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="prenom">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.prenom">Prenom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDeNaissance">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.dateDeNaissance">Date De Naissance</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="motdepasse">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.motdepasse">Motdepasse</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="email">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.email">Email</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="photo">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.photo">Photo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pwd">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.pwd">Pwd</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="role">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.utilisateur.role">Role</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (utilisateur of utilisateurs(); track trackId(utilisateur)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/utilisateur', utilisateur.id, 'view']">{{ utilisateur.id }}</a>
+              </td>
+              <td>{{ utilisateur.iduser }}</td>
+              <td>{{ utilisateur.login }}</td>
+              <td>{{ utilisateur.nom }}</td>
+              <td>{{ utilisateur.prenom }}</td>
+              <td>{{ utilisateur.dateDeNaissance | formatMediumDatetime }}</td>
+              <td>{{ utilisateur.motdepasse }}</td>
+              <td>{{ utilisateur.email }}</td>
+              <td>{{ utilisateur.photo }}</td>
+              <td>{{ utilisateur.pwd }}</td>
+              <td [jhiTranslate]="'gestionimmobiliereApp.Role.' + (utilisateur.role ?? 'null')">
+                {{ { null: '', ADMIN: 'ADMIN', USER: 'USER' }[utilisateur.role ?? 'null'] }}
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/utilisateur', utilisateur.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/utilisateur', utilisateur.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(utilisateur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (utilisateurs().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

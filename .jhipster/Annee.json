@@ -1,0 +1,21 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000124"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "an",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelle",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Annee",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

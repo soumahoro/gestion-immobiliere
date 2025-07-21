@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000131"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "iduser",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "login",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prenom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateDeNaissance",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "motdepasse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pwd",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "role",
+      "fieldType": "Role",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ADMIN,USER"
+    }
+  ],
+  "name": "Utilisateur",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

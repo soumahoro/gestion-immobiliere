@@ -1,0 +1,25 @@
+{
+  "gestionimmobiliereApp": {
+    "annee": {
+      "home": {
+        "title": "Annees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Annee",
+        "createOrEditLabel": "Create or edit a Annee",
+        "notFound": "No Annees found"
+      },
+      "created": "A new Annee is created with identifier {{ param }}",
+      "updated": "A Annee is updated with identifier {{ param }}",
+      "deleted": "A Annee is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Annee {{ id }}?"
+      },
+      "detail": {
+        "title": "Annee"
+      },
+      "id": "ID",
+      "an": "An",
+      "libelle": "Libelle"
+    }
+  }
+}

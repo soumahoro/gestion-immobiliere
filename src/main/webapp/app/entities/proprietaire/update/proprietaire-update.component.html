@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-proprietaire-heading"
+        data-cy="ProprietaireCreateUpdateHeading"
+        jhiTranslate="gestionimmobiliereApp.proprietaire.home.createOrEditLabel"
+      >
+        Créer ou éditer un Proprietaire
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.proprietaire.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idproRef = editForm.get('idpro')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idpro" jhiTranslate="gestionimmobiliereApp.proprietaire.idpro">Idpro</label>
+          <input type="text" class="form-control" name="idpro" id="field_idpro" data-cy="idpro" formControlName="idpro" />
+          @if (idproRef.invalid && (idproRef.dirty || idproRef.touched)) {
+            <div>
+              @if (editForm.get('idpro')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="gestionimmobiliereApp.proprietaire.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nom" jhiTranslate="gestionimmobiliereApp.proprietaire.nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_residence" jhiTranslate="gestionimmobiliereApp.proprietaire.residence">Residence</label>
+          <input type="text" class="form-control" name="residence" id="field_residence" data-cy="residence" formControlName="residence" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_tel" jhiTranslate="gestionimmobiliereApp.proprietaire.tel">Tel</label>
+          <input type="text" class="form-control" name="tel" id="field_tel" data-cy="tel" formControlName="tel" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

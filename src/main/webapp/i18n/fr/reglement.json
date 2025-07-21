@@ -1,0 +1,36 @@
+{
+  "gestionimmobiliereApp": {
+    "reglement": {
+      "home": {
+        "title": "Reglements",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Reglement",
+        "createOrEditLabel": "Créer ou éditer un Reglement",
+        "notFound": "Aucun Reglement trouvé"
+      },
+      "created": "Un nouveau Reglement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Reglement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Reglement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Reglement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Reglement"
+      },
+      "id": "ID",
+      "idreg": "Idreg",
+      "annee": "Annee",
+      "date": "Date",
+      "montant": "Montant",
+      "montantlettres": "Montantlettres",
+      "motif": "Motif",
+      "observ1": "Observ 1",
+      "observ2": "Observ 2",
+      "observ3": "Observ 3",
+      "reste": "Reste",
+      "locataire": "Locataire",
+      "moi": "Moi",
+      "utilisateur": "Utilisateur"
+    }
+  }
+}

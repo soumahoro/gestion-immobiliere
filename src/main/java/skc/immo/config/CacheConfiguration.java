@@ -50,6 +50,15 @@ public class CacheConfiguration {
             createCache(cm, skc.immo.domain.User.class.getName());
             createCache(cm, skc.immo.domain.Authority.class.getName());
             createCache(cm, skc.immo.domain.User.class.getName() + ".authorities");
+            createCache(cm, skc.immo.domain.Administrateur.class.getName());
+            createCache(cm, skc.immo.domain.Annee.class.getName());
+            createCache(cm, skc.immo.domain.Appartement.class.getName());
+            createCache(cm, skc.immo.domain.Locataire.class.getName());
+            createCache(cm, skc.immo.domain.Moi.class.getName());
+            createCache(cm, skc.immo.domain.Proprietaire.class.getName());
+            createCache(cm, skc.immo.domain.Reglement.class.getName());
+            createCache(cm, skc.immo.domain.Residence.class.getName());
+            createCache(cm, skc.immo.domain.Utilisateur.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

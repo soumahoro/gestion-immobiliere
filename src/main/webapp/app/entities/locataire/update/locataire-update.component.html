@@ -1,0 +1,176 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-locataire-heading"
+        data-cy="LocataireCreateUpdateHeading"
+        jhiTranslate="gestionimmobiliereApp.locataire.home.createOrEditLabel"
+      >
+        Créer ou éditer un Locataire
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.locataire.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idlocRef = editForm.get('idloc')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idloc" jhiTranslate="gestionimmobiliereApp.locataire.idloc">Idloc</label>
+          <input type="text" class="form-control" name="idloc" id="field_idloc" data-cy="idloc" formControlName="idloc" />
+          @if (idlocRef.invalid && (idlocRef.dirty || idlocRef.touched)) {
+            <div>
+              @if (editForm.get('idloc')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_arriere" jhiTranslate="gestionimmobiliereApp.locataire.arriere">Arriere</label>
+          <input type="number" class="form-control" name="arriere" id="field_arriere" data-cy="arriere" formControlName="arriere" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_date" jhiTranslate="gestionimmobiliereApp.locataire.date">Date</label>
+          <div class="d-flex">
+            <input
+              id="field_date"
+              data-cy="date"
+              type="datetime-local"
+              class="form-control"
+              name="date"
+              formControlName="date"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_datedepart" jhiTranslate="gestionimmobiliereApp.locataire.datedepart">Datedepart</label>
+          <div class="d-flex">
+            <input
+              id="field_datedepart"
+              data-cy="datedepart"
+              type="datetime-local"
+              class="form-control"
+              name="datedepart"
+              formControlName="datedepart"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fonction" jhiTranslate="gestionimmobiliereApp.locataire.fonction">Fonction</label>
+          <input type="text" class="form-control" name="fonction" id="field_fonction" data-cy="fonction" formControlName="fonction" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_loyer" jhiTranslate="gestionimmobiliereApp.locataire.loyer">Loyer</label>
+          <input type="number" class="form-control" name="loyer" id="field_loyer" data-cy="loyer" formControlName="loyer" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motifdepart" jhiTranslate="gestionimmobiliereApp.locataire.motifdepart">Motifdepart</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motifdepart"
+            id="field_motifdepart"
+            data-cy="motifdepart"
+            formControlName="motifdepart"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nationalite" jhiTranslate="gestionimmobiliereApp.locataire.nationalite">Nationalite</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nationalite"
+            id="field_nationalite"
+            data-cy="nationalite"
+            formControlName="nationalite"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nom" jhiTranslate="gestionimmobiliereApp.locataire.nom">Nom</label>
+          <input type="text" class="form-control" name="nom" id="field_nom" data-cy="nom" formControlName="nom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_numpiece" jhiTranslate="gestionimmobiliereApp.locataire.numpiece">Numpiece</label>
+          <input type="text" class="form-control" name="numpiece" id="field_numpiece" data-cy="numpiece" formControlName="numpiece" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observation" jhiTranslate="gestionimmobiliereApp.locataire.observation">Observation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observation"
+            id="field_observation"
+            data-cy="observation"
+            formControlName="observation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_statut" jhiTranslate="gestionimmobiliereApp.locataire.statut">Statut</label>
+          <input type="text" class="form-control" name="statut" id="field_statut" data-cy="statut" formControlName="statut" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telephone" jhiTranslate="gestionimmobiliereApp.locataire.telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_typepiece" jhiTranslate="gestionimmobiliereApp.locataire.typepiece">Typepiece</label>
+          <input type="text" class="form-control" name="typepiece" id="field_typepiece" data-cy="typepiece" formControlName="typepiece" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_appartement" jhiTranslate="gestionimmobiliereApp.locataire.appartement">Appartement</label>
+          <select
+            class="form-control"
+            id="field_appartement"
+            data-cy="appartement"
+            name="appartement"
+            formControlName="appartement"
+            [compareWith]="compareAppartement"
+          >
+            <option [ngValue]="null"></option>
+            @for (appartementOption of appartementsSharedCollection; track $index) {
+              <option [ngValue]="appartementOption">{{ appartementOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (locataire(); as locataireRef) {
+      <div>
+        <h2 data-cy="locataireDetailsHeading"><span jhiTranslate="gestionimmobiliereApp.locataire.detail.title">Locataire</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ locataireRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.idloc">Idloc</span></dt>
+          <dd>
+            <span>{{ locataireRef.idloc }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.arriere">Arriere</span></dt>
+          <dd>
+            <span>{{ locataireRef.arriere }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.date">Date</span></dt>
+          <dd>
+            <span>{{ locataireRef.date | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.datedepart">Datedepart</span></dt>
+          <dd>
+            <span>{{ locataireRef.datedepart | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.fonction">Fonction</span></dt>
+          <dd>
+            <span>{{ locataireRef.fonction }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.loyer">Loyer</span></dt>
+          <dd>
+            <span>{{ locataireRef.loyer }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.motifdepart">Motifdepart</span></dt>
+          <dd>
+            <span>{{ locataireRef.motifdepart }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.nationalite">Nationalite</span></dt>
+          <dd>
+            <span>{{ locataireRef.nationalite }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.nom">Nom</span></dt>
+          <dd>
+            <span>{{ locataireRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.numpiece">Numpiece</span></dt>
+          <dd>
+            <span>{{ locataireRef.numpiece }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.observation">Observation</span></dt>
+          <dd>
+            <span>{{ locataireRef.observation }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.statut">Statut</span></dt>
+          <dd>
+            <span>{{ locataireRef.statut }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ locataireRef.telephone }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.typepiece">Typepiece</span></dt>
+          <dd>
+            <span>{{ locataireRef.typepiece }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.locataire.appartement">Appartement</span></dt>
+          <dd>
+            @if (locataire()!.appartement) {
+              <div>
+                <a [routerLink]="['/appartement', locataire()!.appartement?.id, 'view']">{{ locataireRef.appartement?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/locataire', locataireRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "gestionimmobiliereApp": {
+    "Role": {
+      "null": "",
+      "ADMIN": "ADMIN",
+      "USER": "USER"
+    }
+  }
+}

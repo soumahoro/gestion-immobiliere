@@ -1,0 +1,30 @@
+{
+  "gestionimmobiliereApp": {
+    "residence": {
+      "home": {
+        "title": "Residences",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Residence",
+        "createOrEditLabel": "Create or edit a Residence",
+        "notFound": "No Residences found"
+      },
+      "created": "A new Residence is created with identifier {{ param }}",
+      "updated": "A Residence is updated with identifier {{ param }}",
+      "deleted": "A Residence is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Residence {{ id }}?"
+      },
+      "detail": {
+        "title": "Residence"
+      },
+      "id": "ID",
+      "idres": "Idres",
+      "ilot": "Ilot",
+      "localisation": "Localisation",
+      "observation": "Observation",
+      "quartier": "Quartier",
+      "ville": "Ville",
+      "proprietaire": "Proprietaire"
+    }
+  }
+}

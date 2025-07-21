@@ -1,0 +1,21 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000127"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idmois",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "mois",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Moi",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

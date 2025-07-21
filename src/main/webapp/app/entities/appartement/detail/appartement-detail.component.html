@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (appartement(); as appartementRef) {
+      <div>
+        <h2 data-cy="appartementDetailsHeading"><span jhiTranslate="gestionimmobiliereApp.appartement.detail.title">Appartement</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ appartementRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.idapp">Idapp</span></dt>
+          <dd>
+            <span>{{ appartementRef.idapp }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.libelle">Libelle</span></dt>
+          <dd>
+            <span>{{ appartementRef.libelle }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.loyer">Loyer</span></dt>
+          <dd>
+            <span>{{ appartementRef.loyer }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.nbrepieces">Nbrepieces</span></dt>
+          <dd>
+            <span>{{ appartementRef.nbrepieces }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.taux">Taux</span></dt>
+          <dd>
+            <span>{{ appartementRef.taux }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.appartement.residence">Residence</span></dt>
+          <dd>
+            @if (appartement()!.residence) {
+              <div>
+                <a [routerLink]="['/residence', appartement()!.residence?.id, 'view']">{{ appartementRef.residence?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/appartement', appartementRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (administrateur(); as administrateurRef) {
+      <div>
+        <h2 data-cy="administrateurDetailsHeading">
+          <span jhiTranslate="gestionimmobiliereApp.administrateur.detail.title">Administrateur</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ administrateurRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="gestionimmobiliereApp.administrateur.code">Code</span></dt>
+          <dd>
+            <span>{{ administrateurRef.code }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/administrateur', administrateurRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

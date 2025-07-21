@@ -1,0 +1,113 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-residence-heading"
+        data-cy="ResidenceCreateUpdateHeading"
+        jhiTranslate="gestionimmobiliereApp.residence.home.createOrEditLabel"
+      >
+        Créer ou éditer un Residence
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="gestionimmobiliereApp.residence.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let idresRef = editForm.get('idres')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_idres" jhiTranslate="gestionimmobiliereApp.residence.idres">Idres</label>
+          <input type="text" class="form-control" name="idres" id="field_idres" data-cy="idres" formControlName="idres" />
+          @if (idresRef.invalid && (idresRef.dirty || idresRef.touched)) {
+            <div>
+              @if (editForm.get('idres')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ilot" jhiTranslate="gestionimmobiliereApp.residence.ilot">Ilot</label>
+          <input type="text" class="form-control" name="ilot" id="field_ilot" data-cy="ilot" formControlName="ilot" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_localisation" jhiTranslate="gestionimmobiliereApp.residence.localisation"
+            >Localisation</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="localisation"
+            id="field_localisation"
+            data-cy="localisation"
+            formControlName="localisation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_observation" jhiTranslate="gestionimmobiliereApp.residence.observation">Observation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="observation"
+            id="field_observation"
+            data-cy="observation"
+            formControlName="observation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_quartier" jhiTranslate="gestionimmobiliereApp.residence.quartier">Quartier</label>
+          <input type="text" class="form-control" name="quartier" id="field_quartier" data-cy="quartier" formControlName="quartier" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_ville" jhiTranslate="gestionimmobiliereApp.residence.ville">Ville</label>
+          <input type="text" class="form-control" name="ville" id="field_ville" data-cy="ville" formControlName="ville" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_proprietaire" jhiTranslate="gestionimmobiliereApp.residence.proprietaire"
+            >Proprietaire</label
+          >
+          <select
+            class="form-control"
+            id="field_proprietaire"
+            data-cy="proprietaire"
+            name="proprietaire"
+            formControlName="proprietaire"
+            [compareWith]="compareProprietaire"
+          >
+            <option [ngValue]="null"></option>
+            @for (proprietaireOption of proprietairesSharedCollection; track $index) {
+              <option [ngValue]="proprietaireOption">{{ proprietaireOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

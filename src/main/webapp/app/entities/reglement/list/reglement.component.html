@@ -1,0 +1,214 @@
+<div>
+  <h2 id="page-heading" data-cy="ReglementHeading">
+    <span jhiTranslate="gestionimmobiliereApp.reglement.home.title">Reglements</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.reglement.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-reglement"
+        [routerLink]="['/reglement/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gestionimmobiliereApp.reglement.home.createLabel">Créer un nouveau Reglement</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (reglements().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="gestionimmobiliereApp.reglement.home.notFound">Aucun Reglement trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="idreg">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.idreg">Idreg</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="annee">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.annee">Annee</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="montant">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.montant">Montant</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="montantlettres">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.montantlettres">Montantlettres</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="motif">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.motif">Motif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observ1">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.observ1">Observ 1</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observ2">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.observ2">Observ 2</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observ3">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.observ3">Observ 3</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reste">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.reste">Reste</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="locataire.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.locataire">Locataire</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="moi.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.moi">Moi</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="utilisateur.id">
+              <div class="d-flex">
+                <span jhiTranslate="gestionimmobiliereApp.reglement.utilisateur">Utilisateur</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reglement of reglements(); track trackId(reglement)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/reglement', reglement.id, 'view']">{{ reglement.id }}</a>
+              </td>
+              <td>{{ reglement.idreg }}</td>
+              <td>{{ reglement.annee }}</td>
+              <td>{{ reglement.date | formatMediumDatetime }}</td>
+              <td>{{ reglement.montant }}</td>
+              <td>{{ reglement.montantlettres }}</td>
+              <td>{{ reglement.motif }}</td>
+              <td>{{ reglement.observ1 }}</td>
+              <td>{{ reglement.observ2 }}</td>
+              <td>{{ reglement.observ3 }}</td>
+              <td>{{ reglement.reste }}</td>
+              <td>
+                @if (reglement.locataire) {
+                  <div>
+                    <a [routerLink]="['/locataire', reglement.locataire.id, 'view']">{{ reglement.locataire.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (reglement.moi) {
+                  <div>
+                    <a [routerLink]="['/moi', reglement.moi.id, 'view']">{{ reglement.moi.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (reglement.utilisateur) {
+                  <div>
+                    <a [routerLink]="['/utilisateur', reglement.utilisateur.id, 'view']">{{ reglement.utilisateur.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/reglement', reglement.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/reglement', reglement.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(reglement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (reglements().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page, totalItems, itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

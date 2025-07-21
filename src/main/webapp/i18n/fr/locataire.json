@@ -1,0 +1,38 @@
+{
+  "gestionimmobiliereApp": {
+    "locataire": {
+      "home": {
+        "title": "Locataires",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Locataire",
+        "createOrEditLabel": "Créer ou éditer un Locataire",
+        "notFound": "Aucun Locataire trouvé"
+      },
+      "created": "Un nouveau Locataire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Locataire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Locataire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Locataire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Locataire"
+      },
+      "id": "ID",
+      "idloc": "Idloc",
+      "arriere": "Arriere",
+      "date": "Date",
+      "datedepart": "Datedepart",
+      "fonction": "Fonction",
+      "loyer": "Loyer",
+      "motifdepart": "Motifdepart",
+      "nationalite": "Nationalite",
+      "nom": "Nom",
+      "numpiece": "Numpiece",
+      "observation": "Observation",
+      "statut": "Statut",
+      "telephone": "Telephone",
+      "typepiece": "Typepiece",
+      "appartement": "Appartement"
+    }
+  }
+}

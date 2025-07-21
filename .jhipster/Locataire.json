@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20250721000126"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "idloc",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "arriere",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "datedepart",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "fonction",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "loyer",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "motifdepart",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nationalite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numpiece",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "observation",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "typepiece",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Locataire",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "appartement",
+      "relationshipName": "appartement",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}
