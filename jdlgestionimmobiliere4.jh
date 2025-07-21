@@ -1,0 +1,79 @@
+entity Administrateur {
+  code String required
+}
+
+entity Annee {
+  an Integer required
+  libelle String
+}
+
+entity Appartement {
+  idapp String required
+  libelle String
+  loyer Integer
+  nbrepieces Integer
+  taux Integer
+}
+
+entity Locataire {
+  idloc String required
+  arriere Integer
+  date ZonedDateTime
+  datedepart ZonedDateTime
+  fonction String
+  loyer Integer
+  motifdepart String
+  nationalite String
+  nom String
+  numpiece String
+  observation String
+  statut String
+  telephone String
+  typepiece String
+}
+
+entity Moi {
+  idmois Integer required
+  mois String
+}
+
+entity Proprietaire {
+  idpro String required
+  date ZonedDateTime
+  nom String
+  residence String
+  tel String
+}
+
+entity Reglement {
+  idreg Integer
+  annee Integer
+  date ZonedDateTime
+  montant Integer
+  montantlettres TextBlob
+  motif String
+  observ1 String
+  observ2 String
+  observ3 String
+  reste Integer
+}
+
+entity Residence {
+  idres String required
+  ilot String
+  localisation String
+  observation String
+  quartier String
+  ville String
+}
+
+relationship ManyToOne {
+  Appartement{residence} to Residence
+  Locataire{appartement} to Appartement
+  Reglement{locataire} to Locataire
+  Reglement{moi} to Moi
+  Reglement{user(login)} to User
+  Residence{proprietaire} to Proprietaire
+}
+
+paginate * with pagination
