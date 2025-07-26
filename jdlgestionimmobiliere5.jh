@@ -1,0 +1,114 @@
+enum Role {
+  ADMIN,
+  USER
+}
+
+entity Administrateur {
+  code String required
+}
+
+entity Annee {
+  an Integer required,
+  libelle String
+}
+
+entity Appartement {
+  idapp String required,
+  libelle String,
+  loyer Integer,
+  nbrepieces Integer,
+  taux Integer
+}
+
+entity Locataire {
+  idloc String required,
+  arriere Integer,
+  date Instant,
+  datedepart Instant,
+  fonction String,
+  loyer Integer,
+  motifdepart String,
+  nationalite String,
+  nom String,
+  numpiece String,
+  observation String,
+  statut String,
+  telephone String,
+  typepiece String
+}
+
+entity Moi {
+  idmois Integer required,
+  mois String
+}
+
+entity Proprietaire {
+  idpro String required,
+  date Instant,
+  nom String,
+  residence String,
+  tel String
+}
+
+entity Reglement {
+  idreg Long required,
+  annee Integer,
+  date Instant,
+  montant Integer,
+  montantlettres TextBlob,
+  motif String,
+  observ1 String,
+  observ2 String,
+  observ3 String,
+  reste Integer
+}
+
+entity Residence {
+  idres String required,
+  ilot String,
+  localisation String,
+  observation String,
+  quartier String,
+  ville String
+}
+
+entity Utilisateur {
+  iduser String required,
+  login String required unique,
+  nom String,
+  prenom String,
+  dateDeNaissance Instant,
+  motdepasse String,
+  email String,
+  photo String,
+  pwd String,
+  role Role required
+}
+
+relationship ManyToOne {
+  Appartement{residence} to Residence
+  Locataire{appartement} to Appartement
+  Residence{proprietaire} to Proprietaire
+  Reglement{locataire} to Locataire
+  Reglement{moi} to Moi
+  Reglement{utilisateur} to Utilisateur
+}
+
+relationship OneToMany {
+  Residence{appartements} to Appartement{residence}
+  Appartement{locataires} to Locataire{appartement}
+  Proprietaire{residences} to Residence{proprietaire}
+  Locataire{reglements} to Reglement{locataire}
+  Moi{reglements} to Reglement{moi}
+  Utilisateur{reglements} to Reglement{utilisateur}
+}
+
+paginate Administrateur with infinite-scroll
+paginate Annee with infinite-scroll
+paginate Appartement with infinite-scroll
+paginate Locataire with infinite-scroll
+paginate Moi with infinite-scroll
+paginate Proprietaire with infinite-scroll
+paginate Reglement with infinite-scroll
+paginate Residence with infinite-scroll
+paginate Utilisateur with infinite-scroll
